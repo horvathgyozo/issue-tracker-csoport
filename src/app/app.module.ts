@@ -4,18 +4,23 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RoutingModule } from "./routing/routing.module";
 
-import {MatToolbarModule, MatButtonModule,
-        MatIconModule, MatMenuModule} from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule,
+          MatFormFieldModule, MatInputModule
+} from "@angular/material";
 
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
+import { IssueFormComponent } from './issue-form/issue-form.component';
+import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    IssueListComponent
+    IssueListComponent,
+    IssueFormComponent,
+    IssueDetailComponent
   ],
   imports: [
     BrowserModule,
