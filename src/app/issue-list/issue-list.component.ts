@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Issue } from "../issue";
+import { IssueService } from "../issue.service";
 
 @Component({
   selector: 'issue-list',
@@ -10,23 +11,13 @@ export class IssueListComponent implements OnInit {
 
   selectedStatus: string = '';
   selectedIssue: Issue;
-  issues: Issue[] = [
-    {
-      id: 1,
-      location: 'PC5',
-      description: 'Bad',
-      status: 'ADDED',
-    },
-    {
-      id: 2,
-      location: 'PC3',
-      description: 'Very bad',
-      status: 'DONE'
-    },
-  ];
+  issues: Issue[] = [];
   filteredIssues: Issue[];
 
-  constructor() {
+  constructor(
+    private issueService: IssueService
+  ) {
+    this.issues = this.issueService.getIssues();
     this.filterIssues();
   }
 
@@ -49,4 +40,21 @@ export class IssueListComponent implements OnInit {
     this.selectedIssue = issue;
   }
 
+  onFormSubmit(issue: Issue) {
+    if (issue.id > 0) {
+      this.selectedIssue.location = issue.location;
+      this.selectedIssue.description = issue.description;
+    } else {
+      this.selectedIssue.id = Math.floor(Math.random()*1000000);
+      this.selectedIssue.location = issue.location;
+      this.selectedIssue.description = issue.description;
+      this.selectedIssue.status = 'ADDED';
+      this.issues.push(this.selectedIssue);
+    }
+    this.selectedIssue = null;
+  }
+
+  onNewClick() {
+    this.selectedIssue = new Issue();
+  }
 }

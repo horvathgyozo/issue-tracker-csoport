@@ -10,6 +10,7 @@ import { MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule,
           MatButtonToggleModule
 } from "@angular/material";
 
+import { IssueService } from "./issue.service";
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
@@ -36,7 +37,7 @@ import { StatusFilterComponent } from './status-filter/status-filter.component';
     RoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [IssueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

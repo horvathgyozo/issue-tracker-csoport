@@ -19,16 +19,22 @@ const routes: Routes = [
   },
   {
     path: 'issues',
-    component: IssueListComponent
+    component: IssueListComponent,
+    children: [
+      {
+        path: ':id',
+        component: IssueDetailComponent    
+      }
+    ]
   },
   {
     path: 'issues/add',
     component: IssueFormComponent
   },
-  {
-    path: 'issues/:id',
-    component: IssueDetailComponent
-  },
+  // {
+  //   path: 'issue-detail/:id',
+  //   component: IssueDetailComponent
+  // },
 ];
 
 @NgModule({
