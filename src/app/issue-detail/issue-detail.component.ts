@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Observable } from "rxjs";
 import { Issue } from "../issue";
 import { IssueService } from "../issue.service";
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'issue-detail',
@@ -11,7 +12,7 @@ import { IssueService } from "../issue.service";
 })
 export class IssueDetailComponent implements OnInit {
 
-  issue: Issue = null;
+  issue: Issue = new Issue();
 
   constructor(
     private route: ActivatedRoute,
@@ -19,15 +20,15 @@ export class IssueDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.issue = this.issueService.getIssue(id);
+    // const id = +this.route.snapshot.paramMap.get('id');
+    // this.issue = this.issueService.getIssue(id);
 
-    // this.route.paramMap
-    //   .switchMap((params: ParamMap) => {
-    //     const id = +params.get('id');
-    //     console.log(id);
-    //     return Observable.of({});
-    //   });
+    this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        const id = +params.get('id');
+        console.log(id);
+        return Observable.of({});
+      });
   }
 
 }
