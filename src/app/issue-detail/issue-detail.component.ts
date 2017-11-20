@@ -28,7 +28,8 @@ export class IssueDetailComponent implements OnInit {
         const id = +params.get('id');
         console.log(id);
         return Observable.of({});
-      });
+      })
+      .subscribe();
   }
 
 }
