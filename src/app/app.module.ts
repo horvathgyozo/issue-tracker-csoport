@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RoutingModule } from "./routing/routing.module";
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 import { MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule,
           MatFormFieldModule, MatInputModule,
@@ -11,12 +12,14 @@ import { MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule,
 } from "@angular/material";
 
 import { IssueService } from "./issue.service";
+import { AuthService } from "./auth.service";
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssueFormComponent } from './issue-form/issue-form.component';
 import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 import { StatusFilterComponent } from './status-filter/status-filter.component';
+import { IssueEditComponent } from './issue-edit/issue-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { StatusFilterComponent } from './status-filter/status-filter.component';
     IssueListComponent,
     IssueFormComponent,
     IssueDetailComponent,
-    StatusFilterComponent
+    StatusFilterComponent,
+    IssueEditComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +39,10 @@ import { StatusFilterComponent } from './status-filter/status-filter.component';
     MatIconModule, MatMenuModule,
     MatButtonToggleModule,
     RoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [IssueService],
+  providers: [IssueService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

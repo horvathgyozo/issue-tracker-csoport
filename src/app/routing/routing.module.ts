@@ -6,6 +6,7 @@ import { MainPageComponent } from "../main-page/main-page.component";
 import { IssueListComponent } from "../issue-list/issue-list.component";
 import { IssueDetailComponent } from "../issue-detail/issue-detail.component";
 import { IssueFormComponent } from "../issue-form/issue-form.component";
+import { IssueEditComponent } from "../issue-edit/issue-edit.component";
 
 const routes: Routes = [
   {
@@ -20,21 +21,25 @@ const routes: Routes = [
   {
     path: 'issues',
     component: IssueListComponent,
-    children: [
-      {
-        path: ':id',
-        component: IssueDetailComponent    
-      }
-    ]
+    // children: [
+    //   {
+    //     path: ':id',
+    //     component: IssueDetailComponent    
+    //   }
+    // ]
   },
   {
-    path: 'issues/add',
-    component: IssueFormComponent
+    path: 'issues/new',
+    component: IssueEditComponent
   },
-  // {
-  //   path: 'issue-detail/:id',
-  //   component: IssueDetailComponent
-  // },
+  {
+    path: 'issues/:id',
+    component: IssueDetailComponent
+  },
+  {
+    path: 'issues/:id/edit',
+    component: IssueEditComponent
+  },
 ];
 
 @NgModule({
