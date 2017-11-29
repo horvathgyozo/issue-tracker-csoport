@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Issue } from "./issue";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -29,8 +30,8 @@ export class IssueService {
     private http: HttpClient
   ) { }
 
-  getIssues(): Promise<Issue[]> {
-    return this.http.get<Issue[]>('api/issue').toPromise();
+  getIssues(): Observable<Issue[]> {
+    return this.http.get<Issue[]>('api/issue');
   }
 
   getIssuesSlowly(): Promise<Issue[]> {
@@ -41,22 +42,24 @@ export class IssueService {
     });
   }
 
-  getIssue(id) {
-    return this.issues.find(issue => issue.id === id);
+  getIssue(id): Promise<Issue> {
+    return this.http.get<Issue>(`api/issue/${id}`).toPromise();
   }
 
-  addIssue(issue: Issue) {
-    const iss = Object.assign(issue, {
-      id: this.issues.length+1,
-      status: 'ADDED'
-    });
-    this.issues.push(iss);
+  addIssue(issue: Issue): Promise<Issue> {
+    return this.http.post<Issue>(
+      `api/issue`,
+      issue,
+      httpOptions
+    ).toPromise();
   }
 
-  updateIssue(id: number, issue: Issue) {
-    const iss = this.getIssue(id);
-    iss.location = issue.location;
-    iss.description = issue.description;
+  updateIssue(id: number, issue: Issue): Promise<Issue> {
+    return this.http.put<Issue>(
+      `api/issue/${id}`,
+      issue,
+      httpOptions
+    ).toPromise();
   }
 
 }

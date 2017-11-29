@@ -20,6 +20,9 @@ import { IssueFormComponent } from './issue-form/issue-form.component';
 import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 import { StatusFilterComponent } from './status-filter/status-filter.component';
 import { IssueEditComponent } from './issue-edit/issue-edit.component';
+import { MenuComponent } from './menu/menu.component';
+import { AuthGuard } from "./auth.guard";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { IssueEditComponent } from './issue-edit/issue-edit.component';
     IssueFormComponent,
     IssueDetailComponent,
     StatusFilterComponent,
-    IssueEditComponent
+    IssueEditComponent,
+    MenuComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,7 @@ import { IssueEditComponent } from './issue-edit/issue-edit.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [IssueService, AuthService],
+  providers: [IssueService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

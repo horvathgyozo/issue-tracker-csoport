@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { User } from "./user";
+import { tap } from "rxjs/operators";
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -9,21 +11,27 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
 
+  isLoggedIn: boolean = false;
+  redirectUrl: string;
+  user: User;
+
   constructor(
     private http: HttpClient
   ) { }
 
-  login() {
-    const user = {
-      "username": "admin",
-      "password": "a"
-    };
-    return this.http.post(
+  login(user: User) {
+    return this.http.post<User>(
       // 'http://localhost:4200/api/user/login', 
       'api/user/login', 
       user,
       httpOptions
-    ).toPromise();
+    ).pipe(
+      tap((user: User) => {
+        this.isLoggedIn = true;
+        this.user = user;
+      })
+    )
+    .toPromise();
   }
 
 }

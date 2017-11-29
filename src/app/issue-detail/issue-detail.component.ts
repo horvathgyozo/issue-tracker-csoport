@@ -21,12 +21,12 @@ export class IssueDetailComponent implements OnInit {
 
   ngOnInit() {
     // const id = +this.route.snapshot.paramMap.get('id');
-    // this.issue = this.issueService.getIssue(id);
+    // this.issue = await this.issueService.getIssue(id);
 
     this.route.paramMap
-      .switchMap((params: ParamMap) => {
+      .switchMap(async (params: ParamMap) => {
         const id = +params.get('id');
-        this.issue = this.issueService.getIssue(id);
+        this.issue = await this.issueService.getIssue(id);
         return Observable.of({});
       })
       .subscribe();
