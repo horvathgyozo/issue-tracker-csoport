@@ -21,8 +21,8 @@ export class AuthService {
 
   login(user: User) {
     return this.http.post<User>(
-      // 'http://localhost:4200/api/user/login', 
-      'api/user/login', 
+      // 'http://localhost:4200/api/user/login',
+      'api/user/login',
       user,
       httpOptions
     ).pipe(
@@ -32,6 +32,17 @@ export class AuthService {
       })
     )
     .toPromise();
+  }
+
+  logout() {
+    // https://stackoverflow.com/a/46816238
+    return this.http.post('api/user/logout', {}, httpOptions).pipe(
+      tap(res => {
+        console.log('service logout', res);
+        this.isLoggedIn = false;
+        this.user = new User();
+      })
+    ).toPromise();
   }
 
 }
