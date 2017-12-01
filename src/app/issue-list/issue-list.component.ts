@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Issue } from "../issue";
 import { IssueService } from "../issue.service";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'issue-list',
@@ -14,7 +15,8 @@ export class IssueListComponent implements OnInit {
   filteredIssues: Issue[];
 
   constructor(
-    private issueService: IssueService
+    private issueService: IssueService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -31,8 +33,8 @@ export class IssueListComponent implements OnInit {
   }
 
   filterIssues() {
-    this.filteredIssues = this.selectedStatus === '' 
-      ? this.issues  
+    this.filteredIssues = this.selectedStatus === ''
+      ? this.issues
       : this.issues.filter(
           issue => issue.status === this.selectedStatus)
   }

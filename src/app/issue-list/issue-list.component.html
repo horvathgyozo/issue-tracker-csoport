@@ -26,7 +26,7 @@
           </td>
           <td>{{ issue.status }}</td>
           <td>
-            <a mat-icon-button 
+            <a mat-icon-button *ngIf="authService.user.role === 'ADMIN'"
               [routerLink]="['/issues', issue.id, 'edit']">
               <mat-icon>edit</mat-icon>
             </a>

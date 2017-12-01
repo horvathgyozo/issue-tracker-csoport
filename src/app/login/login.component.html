@@ -3,10 +3,10 @@
   {{ message }}
   <div class="form-group">
     <mat-form-field>
-      <input 
-        name="username" 
-        [(ngModel)]="model.username" 
-        matInput type="text" 
+      <input
+        name="username"
+        [(ngModel)]="model.username"
+        matInput type="text"
         placeholder="Enter username"
         required
         #username="ngModel">
@@ -18,10 +18,10 @@
 
   <div class="form-group">
     <mat-form-field>
-      <input 
-        name="password" 
-        [(ngModel)]="model.password" 
-        matInput type="password" 
+      <input
+        name="password"
+        [(ngModel)]="model.password"
+        matInput type="password"
         placeholder="Enter password"
         required
         #password="ngModel">
@@ -31,5 +31,5 @@
     </mat-form-field>
   </div>
 
-  <button [disabled]="f.invalid" type="submit" mat-raised-button color="primary">Save issue</button>
+  <button [disabled]="f.invalid" type="submit" mat-raised-button color="primary">Login</button>
 </form>

@@ -23,28 +23,26 @@ const routes: Routes = [
   {
     path: 'issues',
     component: IssueListComponent,
-    canActivate: [AuthGuard]
-    // children: [
-    //   {
-    //     path: ':id',
-    //     component: IssueDetailComponent    
-    //   }
-    // ]
+    canActivate: [AuthGuard],
+    data: {roles: ['USER', 'ADMIN']}
   },
   {
     path: 'issues/new',
     component: IssueEditComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {roles: ['USER', 'ADMIN']}
   },
   {
     path: 'issues/:id',
     component: IssueDetailComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {roles: ['USER', 'ADMIN']}
   },
   {
     path: 'issues/:id/edit',
     component: IssueEditComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {roles: ['ADMIN']}
   },
   {
     path: 'login',
